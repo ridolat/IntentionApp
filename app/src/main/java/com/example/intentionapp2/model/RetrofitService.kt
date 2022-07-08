@@ -7,8 +7,12 @@ import retrofit2.http.GET
 
 interface RetrofitService {
 
+//    @GET("api/quotes")
     @GET("api/quotes")
     fun getQuotes() : Call<List<Quote>>
+
+    @GET("api/today")
+    fun getQuoteOfTheDay(): Call<List<Quote>>
 
     companion object {
 

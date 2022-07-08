@@ -37,16 +37,38 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerview.adapter = adapter
 
+
+
         viewModel.quoteList.observe(this, Observer {
             Log.d(TAG, "quoteList: $it")
             adapter.setQuoteList(it)
+
         })
+
+        viewModel.quoteOfTheDay.observe(this, Observer{
+            Log.d(TAG, "quoteOTD: $it")
+            binding.quotationLabelMain.text = it[0].quotation
+            binding.authorLabelMain.text = it[0].author_name
+        })
+
+
 
         viewModel.errorMessage.observe(this, Observer {
             Log.d(TAG, "errorMessage: $it")
 
         })
 
+
+
+
+
+
         viewModel.getAllQuotes()
+        viewModel.getQuoteOfTheDay()
+//        var qotd = viewModel.getQuoteOfTheDay().toString()
+//        Log.d(TAG, "QOTD: " + qotd)
+
+
+
     }
 }
